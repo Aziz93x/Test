@@ -6,9 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const part2Button = document.getElementById('part2');
     const part3Button = document.getElementById('part3');
 
-    part1Button.addEventListener('click', () => loadQuiz('questions_part1.json'));
-    part2Button.addEventListener('click', () => loadQuiz('questions_part2.json'));
-    part3Button.addEventListener('click', () => loadQuiz('questions_part3.json'));
+    part1Button.addEventListener('click', () => {
+        loadQuiz('questions_part1.json');
+        activateButton(part1Button);
+    });
+    part2Button.addEventListener('click', () => {
+        loadQuiz('questions_part2.json');
+        activateButton(part2Button);
+    });
+    part3Button.addEventListener('click', () => {
+        loadQuiz('questions_part3.json');
+        activateButton(part3Button);
+    });
 
     function loadQuiz(jsonFile) {
         fetch(jsonFile)
@@ -16,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 const questions = data.questions;
                 displayQuiz(questions, quizContainer);
-                submitButton.addEventListener('click', () => calculateScore(questions, resultContainer));
+                submitButton.onclick = () => calculateScore(questions, resultContainer);
             });
     }
 
@@ -57,5 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const percentage = (score / totalQuestions) * 100;
         resultContainer.innerHTML = `<p>درجتك: ${score}/${totalQuestions} (${percentage.toFixed(2)}%)</p>`;
+    }
+
+    function activateButton(activeButton) {
+        const buttons = [part1Button, part2Button, part3Button];
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+        activeButton.classList.add('active');
     }
 });

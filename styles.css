@@ -41,6 +41,11 @@ h1 {
     transition: all 0.3s ease;
 }
 
+.iphone-button.active {
+    background-color: #ff6347; /* Change this color as needed */
+    box-shadow: 0 4px #b34730;
+}
+
 .iphone-button:active {
     box-shadow: 0 2px #2a4f9c;
     transform: translateY(2px);
