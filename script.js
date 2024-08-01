@@ -2,14 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const quizContainer = document.getElementById('quiz');
     const submitButton = document.getElementById('submit');
     const resultContainer = document.getElementById('result');
+    const part1Button = document.getElementById('part1');
+    const part2Button = document.getElementById('part2');
+    const part3Button = document.getElementById('part3');
 
-    fetch('questions.json')
-        .then(response => response.json())
-        .then(data => {
-            const questions = data.questions;
-            displayQuiz(questions, quizContainer);
-            submitButton.addEventListener('click', () => calculateScore(questions, resultContainer));
-        });
+    part1Button.addEventListener('click', () => loadQuiz('questions_part1.json'));
+    part2Button.addEventListener('click', () => loadQuiz('questions_part2.json'));
+    part3Button.addEventListener('click', () => loadQuiz('questions_part3.json'));
+
+    function loadQuiz(jsonFile) {
+        fetch(jsonFile)
+            .then(response => response.json())
+            .then(data => {
+                const questions = data.questions;
+                displayQuiz(questions, quizContainer);
+                submitButton.addEventListener('click', () => calculateScore(questions, resultContainer));
+            });
+    }
 
     function displayQuiz(questions, container) {
         container.innerHTML = '';
@@ -47,6 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         const percentage = (score / totalQuestions) * 100;
-        resultContainer.innerHTML = `<p>Your score: ${score}/${totalQuestions} (${percentage.toFixed(2)}%)</p>`;
+        resultContainer.innerHTML = `<p>درجتك: ${score}/${totalQuestions} (${percentage.toFixed(2)}%)</p>`;
     }
 });

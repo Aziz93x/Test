@@ -19,6 +19,33 @@ h1 {
     text-align: center;
 }
 
+#buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.iphone-button {
+    background: linear-gradient(to bottom, #4c8ef7, #3467d6);
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 4px #2a4f9c;
+    transition: all 0.3s ease;
+}
+
+.iphone-button:active {
+    box-shadow: 0 2px #2a4f9c;
+    transform: translateY(2px);
+}
+
 #quiz {
     margin-top: 20px;
 }
@@ -29,7 +56,7 @@ h1 {
     border-bottom: 1px solid #ccc;
 }
 
-button {
+button#submit {
     display: block;
     width: 100%;
     padding: 10px;
@@ -40,17 +67,13 @@ button {
     font-size: 16px;
 }
 
-button:hover {
+button#submit:hover {
     background: #0056b3;
 }
 
 #result {
     margin-top: 20px;
     text-align: center;
-}
-
-.important {
-    background-color: #ffeb3b;
 }
 
 label {
